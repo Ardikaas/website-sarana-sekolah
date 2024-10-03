@@ -3,15 +3,37 @@ import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import GuruDashboard from "./pages/GuruDashboard";
 import KepsekDashboard from "./pages/KepsekDashboard";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/guru-dashboard" element={<GuruDashboard />} />
-        <Route path="/kepsek-dashboard" element={<KepsekDashboard />} />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/guru-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["guru"]}>
+              <GuruDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/kepsek-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["kepsek"]}>
+              <KepsekDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
