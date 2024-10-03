@@ -4,12 +4,14 @@ import AdminDashboard from "./pages/AdminDashboard";
 import GuruDashboard from "./pages/GuruDashboard";
 import KepsekDashboard from "./pages/KepsekDashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import CreateUser from "./pages/CreateUser";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/create-user" element={<CreateUser />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         {/* <Route
           path="/admin-dashboard"
