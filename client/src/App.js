@@ -10,14 +10,15 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        {/* <Route
           path="/admin-dashboard"
           element={
             <ProtectedRoute allowedRoles={["admin"]}>
               <AdminDashboard />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/guru-dashboard"
           element={

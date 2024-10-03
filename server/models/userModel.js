@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema(
     mapel: {
       type: String,
       required: [false],
-      default: "mulok",
+      default: "umum",
     },
     role: {
       type: String,
