@@ -1,64 +1,84 @@
 const mongoose = require("mongoose");
 
-const saranaItem = mongoose.Schema({
-  name: {
-    type: String,
-    required: [true],
+const saranaItem = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true],
+    },
+    inUse: {
+      type: Boolean,
+      required: [true],
+    },
+    condition: {
+      type: Boolean,
+      required: [true],
+    },
   },
-  inUse: {
-    type: Boolean,
-    required: [true],
-  },
-  condition: {
-    type: Boolean,
-    required: [true],
-  },
-});
+  {
+    timestamps: [true],
+  }
+);
 
-const prasaranaItem = mongoose.Schema({
-  name: {
-    type: String,
-    required: [true],
+const prasaranaItem = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true],
+    },
+    inUse: {
+      type: Boolean,
+      required: [true],
+    },
+    condition: {
+      type: Boolean,
+      required: [true],
+    },
   },
-  inUse: {
-    type: Boolean,
-    required: [true],
-  },
-  condition: {
-    type: Boolean,
-    required: [true],
-  },
-});
+  {
+    timestamps: [true],
+  }
+);
 
-const mediaBelajarItem = mongoose.Schema({
-  name: {
-    type: String,
-    required: [true],
+const mediaBelajarItem = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true],
+    },
+    inUse: {
+      type: Boolean,
+      required: [true],
+    },
+    condition: {
+      type: Boolean,
+      required: [true],
+    },
   },
-  inUse: {
-    type: Boolean,
-    required: [true],
-  },
-  condition: {
-    type: Boolean,
-    required: [true],
-  },
-});
+  {
+    timestamps: [true],
+  }
+);
 
-const sumberBelajarItem = mongoose.Schema({
-  name: {
-    type: String,
-    required: [true],
+const sumberBelajarItem = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true],
+    },
+    inUse: {
+      type: Boolean,
+      required: [true],
+    },
+    condition: {
+      type: Boolean,
+      required: [true],
+    },
   },
-  inUse: {
-    type: Boolean,
-    required: [true],
-  },
-  condition: {
-    type: Boolean,
-    required: [true],
-  },
-});
+  {
+    timestamps: [true],
+  }
+);
 
 const kelasSchema = mongoose.Schema(
   {
@@ -69,7 +89,7 @@ const kelasSchema = mongoose.Schema(
     saranas: [saranaItem],
     prasaranas: [prasaranaItem],
     mediaBelajars: [mediaBelajarItem],
-    sumberbelajars: [sumberBelajarItem],
+    sumberBelajars: [sumberBelajarItem],
   },
   {
     timestamps: [true],

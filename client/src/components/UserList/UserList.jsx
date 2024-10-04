@@ -2,6 +2,7 @@ import edit from "../assets/edit.png";
 import trash from "../assets/delete.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./UserList.style.css";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -50,10 +51,10 @@ const UserList = () => {
             })}
           </h5>
           <h5 className="role">{user.role}</h5>
-          <a href="#" className="edit" onClick={() => editUser(user._id)}>
+          <a href="" className="edit" onClick={() => editUser(user._id)}>
             <img src={edit} alt="Edit" />
           </a>
-          <a href="#" className="trash" onClick={() => deleteUser(user._id)}>
+          <a href="" className="trash" onClick={() => deleteUser(user._id)}>
             <img src={trash} alt="Delete" />
           </a>
         </div>

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const UserController = require("./controllers/userContoller");
 const cors = require("cors");
+const KelasController = require("./controllers/kelasController");
 require("dotenv").config();
 
 const uri = process.env.URI;
@@ -47,6 +48,22 @@ app.post("/user/login", async (req, res) => {
 
 app.get("/user/logout", async (req, res) => {
   UserController.logoutUser(req, res);
+});
+
+app.get("/kelas", async (req, res) => {
+  KelasController.getAllKelas(req, res);
+});
+
+app.get("/kelas/:id", async (req, res) => {
+  KelasController.getKelasById(req, res);
+});
+
+app.post("/kelas", async (req, res) => {
+  KelasController.createKelas(req, res);
+});
+
+app.delete("/kelas/:id", async (req, res) => {
+  KelasController.deleteKelas(req, res);
 });
 
 app.listen(port, () => {

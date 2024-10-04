@@ -16,4 +16,26 @@
 
 .header-container img{
   width: 25px;
+  height: 25px;
 }
+
+.header-container a{
+  width: 35px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  background-color: #F2B541;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  transition: ease-in 0.3s;
+  border-radius: 50%;
+  opacity: 100%;
+}
+
+.header-container a:hover{
+  background-color: #202020;
+  opacity: 70%;
+}
+
