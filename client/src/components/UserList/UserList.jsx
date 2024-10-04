@@ -1,9 +1,11 @@
 import edit from "../assets/edit.png";
 import trash from "../assets/delete.png";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:8080/user")
@@ -22,10 +24,14 @@ const UserList = () => {
         .then((response) => response.json())
         .then(() => {
           alert("User deleted successfully!");
-          setUsers(users.filter((user) => user._id !== id)); // Remove the user from state after deletion
+          setUsers(users.filter((user) => user._id !== id));
         })
         .catch((error) => console.error("Error deleting user:", error));
     }
+  };
+
+  const editUser = (id) => {
+    navigate(`/edit-user/${id}`);
   };
 
   return (
@@ -44,7 +50,7 @@ const UserList = () => {
             })}
           </h5>
           <h5 className="role">{user.role}</h5>
-          <a href="" className="edit">
+          <a href="#" className="edit" onClick={() => editUser(user._id)}>
             <img src={edit} alt="Edit" />
           </a>
           <a href="#" className="trash" onClick={() => deleteUser(user._id)}>

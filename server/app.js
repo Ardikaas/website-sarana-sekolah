@@ -25,8 +25,16 @@ app.get("/user", async (req, res) => {
   UserController.getAllUser(req, res);
 });
 
+app.get("/user/:id", async (req, res) => {
+  UserController.getUserById(req, res);
+});
+
 app.post("/user", async (req, res) => {
   UserController.createUser(req, res);
+});
+
+app.put("/user/:id", async (req, res) => {
+  UserController.editUser(req, res);
 });
 
 app.delete("/user/:id", async (req, res) => {

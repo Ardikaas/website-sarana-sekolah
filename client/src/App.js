@@ -5,22 +5,37 @@ import GuruDashboard from "./pages/GuruDashboard";
 import KepsekDashboard from "./pages/KepsekDashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import CreateUser from "./pages/CreateUser";
+import EditUser from "./pages/EditUser";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/create-user" element={<CreateUser />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        {/* <Route
+        <Route
+          path="/create-user"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <CreateUser />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit-user/:id"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <EditUser />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/admin-dashboard"
           element={
             <ProtectedRoute allowedRoles={["admin"]}>
               <AdminDashboard />
             </ProtectedRoute>
           }
-        /> */}
+        />
         <Route
           path="/guru-dashboard"
           element={
