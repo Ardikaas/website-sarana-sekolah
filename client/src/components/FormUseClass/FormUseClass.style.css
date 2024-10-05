@@ -1,0 +1,103 @@
+.formuseclass-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.formuseclass-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F2B541;
+  border-radius: 5px;
+  padding: 50px;
+}
+
+.formuseclass-card h1{
+  margin: 0;
+  color: #ffffff;
+}
+
+.kasipad{
+  padding-bottom: 20px;
+}
+
+.formuseclass-devide{
+  display: flex;
+  flex-direction: row;
+}
+
+.formuseclass-left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  background-color: #202020;
+  width: 90px;
+  height: 90px;
+}
+
+.formuseclass-classname-tit{
+  font-size: 3rem;
+  margin: 0;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.formuseclass-right{
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid #202020;
+  gap: 20px;
+}
+
+.formuseclass-category-tit{
+  margin: 0;
+  background-color: #202020;
+  color: #ffffff;
+  padding: 5px 10px;
+}
+
+.formuseclass-category-card{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  background-color: #ffffff;
+  color: #202020;
+  margin: 5px 15px;
+  padding: 5px 15px;
+}
+
+.category-card-item{
+  border-bottom: 2px solid #202020;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.category-card-pil{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.category-card-pil h4{
+  margin: 0;
+  font-weight: 500;
+}
+
+.category-card-pil input{
+  accent-color: #202020;
+}
+
+.category-card-pil-tit{
+  width: 120px;
+}
+
+.lebar{
+  width: 80px;
+}

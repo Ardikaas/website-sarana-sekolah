@@ -9,6 +9,8 @@ import EditUser from "./pages/EditUser";
 import CreateClass from "./pages/CreateClass";
 import EditClass from "./pages/EditClass";
 import AddFacility from "./pages/AddFacility";
+import ChooseClass from "./pages/ChooseClass";
+import UseClass from "./pages/UseClass";
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/choose-class" element={<ChooseClass />} />
+        <Route path="/use-class/:id" element={<UseClass />} />
         <Route
           path="/kepsek-dashboard"
           element={
