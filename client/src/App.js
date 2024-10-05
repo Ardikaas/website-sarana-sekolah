@@ -8,6 +8,7 @@ import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
 import CreateClass from "./pages/CreateClass";
 import EditClass from "./pages/EditClass";
+import AddFacility from "./pages/AddFacility";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/create-class" element={<CreateClass />} />
         <Route path="/edit-class/:id" element={<EditClass />} />
+        <Route
+          path="/edit-class/:id/facility/:category"
+          element={<AddFacility />}
+        />
         <Route
           path="/create-user"
           element={

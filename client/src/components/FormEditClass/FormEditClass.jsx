@@ -47,6 +47,55 @@ const FormEditClass = () => {
     }
   };
 
+  const handleDelete = async (itemId) => {
+    const confirmDelete = window.confirm(
+      "Apakah Anda yakin ingin menghapus item ini?"
+    );
+    if (confirmDelete) {
+      try {
+        // Tentukan kategori yang benar untuk URL
+        let category;
+        switch (activeCategory) {
+          case "saranas":
+            category = "sarana";
+            break;
+          case "prasaranas":
+            category = "prasarana";
+            break;
+          case "mediaBelajars":
+            category = "mediabelajar";
+            break;
+          case "sumberBelajars":
+            category = "sumberbelajar";
+            break;
+          default:
+            category = "";
+        }
+
+        const deleteUrl = `http://localhost:8080/kelas/${id}/${category}/${itemId}`;
+        console.log("Deleting item at:", deleteUrl); // Log URL yang akan digunakan
+
+        const response = await fetch(deleteUrl, {
+          method: "DELETE",
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("Error details:", errorData);
+          alert("Gagal menghapus item.");
+          return;
+        }
+
+        // Update state untuk menghapus item dari list
+        setItems(items.filter((item) => item._id !== itemId));
+        alert("Item berhasil dihapus.");
+      } catch (error) {
+        console.error("Error deleting item:", error);
+        alert("Terjadi kesalahan saat menghapus item.");
+      }
+    }
+  };
+
   return (
     <div className="formeditclass-container">
       <div className="formeditcard">
@@ -91,7 +140,10 @@ const FormEditClass = () => {
           </div>
           <div className="devide-kanan">
             <div className="btn">
-              <a href="/" className="tambah">
+              <a
+                href={`/edit-class/${id}/facility/${activeCategory}`}
+                className="tambah"
+              >
                 Tambah
               </a>
               <a href="/admin-dashboard" className="kembali">
@@ -110,7 +162,7 @@ const FormEditClass = () => {
                   >
                     {item.condition ? "Bagus" : "Buruk"}
                   </h4>
-                  <button>
+                  <button onClick={() => handleDelete(item._id)}>
                     <img src={trash} alt="Delete" />
                   </button>
                 </div>
