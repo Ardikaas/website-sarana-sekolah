@@ -23,7 +23,7 @@ const FormCreateClass = () => {
         setMessage("Kelas berhasil dibuat!");
         setClassName("");
         setTimeout(() => {
-          navigate("/admin-dashboard"); // Redirect setelah 1 detik
+          navigate("/admin-dashboard");
         }, 1000);
       } else {
         setMessage("Gagal membuat kelas. Coba lagi.");
@@ -35,7 +35,7 @@ const FormCreateClass = () => {
 
   const handleInputChange = (e) => {
     const value = e.target.value.toUpperCase();
-    if (value.length <= 2) {
+    if (value.length <= 3) {
       setClassName(value);
     }
   };
@@ -49,9 +49,9 @@ const FormCreateClass = () => {
           value={className}
           onChange={handleInputChange}
           required
-          maxLength={2}
+          maxLength={3}
         />
-        <button onClick={handleCreateClass} disabled={className.length !== 2}>
+        <button onClick={handleCreateClass} disabled={className.length !== 3}>
           Create Kelas
         </button>
         {message && <p>{message}</p>}

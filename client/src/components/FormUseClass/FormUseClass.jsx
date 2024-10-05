@@ -29,14 +29,6 @@ const FormUseClass = () => {
       <div className="formuseclass-category-card" key={item._id}>
         <h4 className="category-card-item">{item.name}</h4>
         <div className="category-card-pil">
-          <h4 className="category-card-pil-tit">Digunakan</h4>
-          <h4>:</h4>
-          <input type="radio" name={`inUse-${item._id}`} />
-          <h4 className="lebar">Ya</h4>
-          <input type="radio" name={`inUse-${item._id}`} />
-          <h4>Tidak</h4>
-        </div>
-        <div className="category-card-pil">
           <h4 className="category-card-pil-tit">Kondisi</h4>
           <h4>:</h4>
           <input type="radio" name={`condition-${item._id}`} />

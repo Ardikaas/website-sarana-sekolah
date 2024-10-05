@@ -4,8 +4,8 @@ const GuruMenu = () => {
   return (
     <div className="gurumenu-container">
       <div className="gurumenu-card">
-        <a href="/choose-class">Form Pemakaian Kelas</a>
-        <a href="">History Pemakaian Kelas</a>
+        <a href="/choose-class">Form Penilaian Kelas</a>
+        <a href="">History Penilaian Kelas</a>
       </div>
     </div>
   );
