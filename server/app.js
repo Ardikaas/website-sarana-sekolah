@@ -66,6 +66,38 @@ app.delete("/kelas/:id", async (req, res) => {
   KelasController.deleteKelas(req, res);
 });
 
+app.post("/kelas/:id/sarana", async (req, res) => {
+  KelasController.addSarana(req, res);
+});
+
+app.delete("/kelas/:id/sarana/:saranasId", async (req, res) => {
+  KelasController.deleteSarana(req, res);
+});
+
+app.post("/kelas/:id/prasarana", async (req, res) => {
+  KelasController.addPrasarana(req, res);
+});
+
+app.delete("/kelas/:id/prasarana/:prasaranasId", async (req, res) => {
+  KelasController.deletePrasarana(req, res);
+});
+
+app.post("/kelas/:id/mediabelajar", async (req, res) => {
+  KelasController.addMediaBelajar(req, res);
+});
+
+app.delete("/kelas/:id/mediabelajar/:mediabelajarsId", async (req, res) => {
+  KelasController.deleteMediaBelajar(req, res);
+});
+
+app.post("/kelas/:id/sumberbelajar", async (req, res) => {
+  KelasController.addSumberBelajar(req, res);
+});
+
+app.delete("/kelas/:id/sumberbelajar/:sumberbelajarsId", async (req, res) => {
+  KelasController.deleteSumberBelajar(req, res);
+});
+
 app.listen(port, () => {
   console.log(`listening on port http://localhost:${port}`);
 });
