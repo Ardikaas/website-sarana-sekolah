@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: center;
   padding:35px 0px;
+  margin-bottom: 100px;
 }
 
 .adminutils-menu{
@@ -11,7 +12,7 @@
   gap: 0px;
 }
 
-.adminutils-menu h2{
+.adminutils-menu-h2{
   margin: 0;
   color: #ffffff;
   background-color: #F2B541;
@@ -19,6 +20,10 @@
   height: 70px;
   padding-left: 20px;
   align-content: center;
+}
+
+.active{
+  background-color: #F2B541;
 }
 
 .adminutils-menu a{
@@ -39,7 +44,7 @@
   border-left: 2px solid #F2B541;
 }
 
-.adminutils-content h2{
+.title-admin{
   background-color: #202020;
   margin: 0;
   align-content: center;

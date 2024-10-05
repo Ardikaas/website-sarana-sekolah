@@ -9,10 +9,12 @@ const saranaItem = mongoose.Schema(
     inUse: {
       type: Boolean,
       required: [true],
+      default: false,
     },
     condition: {
       type: Boolean,
       required: [true],
+      default: true,
     },
   },
   {
@@ -29,10 +31,12 @@ const prasaranaItem = mongoose.Schema(
     inUse: {
       type: Boolean,
       required: [true],
+      default: false,
     },
     condition: {
       type: Boolean,
       required: [true],
+      default: true,
     },
   },
   {
@@ -49,10 +53,12 @@ const mediaBelajarItem = mongoose.Schema(
     inUse: {
       type: Boolean,
       required: [true],
+      default: false,
     },
     condition: {
       type: Boolean,
       required: [true],
+      default: true,
     },
   },
   {
@@ -69,10 +75,12 @@ const sumberBelajarItem = mongoose.Schema(
     inUse: {
       type: Boolean,
       required: [true],
+      default: false,
     },
     condition: {
       type: Boolean,
       required: [true],
+      default: true,
     },
   },
   {

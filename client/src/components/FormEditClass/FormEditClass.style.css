@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.formeditclass-container{
+  margin-top: 50px;
+  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formeditcard{
+  background-color: #F2B541;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+
+.formeditcard h1{
+  color: #ffffff;
+  margin: 0;
+}
+
+.ini{
+  padding-bottom: 40px;
+}
+
+.devide-nama-kelas{
+  background-color: #202020;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.devide-nama-kelas h1{
+  margin: 0;
+  font-weight: 800;
+  font-size: 5rem;
+}
+
+.devide{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.devide-kiri{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.devide-menu{
+  display: flex;
+  flex-direction: column;
+}
+
+.devide-menu button{
+  width: 130px;
+  text-align: right;
+  /* background-color: #ffffff; */
+  font-weight: 700;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: ease-in 0.3s;
+}
+
+.active-kelas{
+  background-color: #202020;
+  color: #ffffff;
+}
+
+.devide-menu button:hover{
+  background-color: #202020;
+  color: #ffffff;
+}
+
+.devide-kanan{
+  background-color: #ffffff;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.kembali{
+  background-color: #F2B541;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  transition: ease-in 0.3s;
+  opacity: 100%;
+}
+
+.kembali:hover{
+  opacity: 70%;
+}
+
+.tambah{
+  background-color: rgb(28, 64, 196);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  transition: ease-in 0.3s;
+  opacity: 100%;
+}
+
+.tambah:hover{
+  opacity: 70%;
+}
+
+.devide-kanan-row{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.devide-kanan-row-nama{
+  background-color: #F2B541;
+  margin: 0;
+  width: 550px;
+  padding: 5px;
+  padding-left: 20px;
+}
+
+.bagus{
+  background-color: rgb(28, 196, 62);
+}
+
+.buruk{
+  background-color: rgb(196, 28, 28);
+}
+
+.devide-kanan-row-kondisi{
+  margin: 0;
+  width: 100px;
+  text-align: center;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.devide-kanan-row button{
+  background-color: rgb(196, 28, 28);
+  border: none;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: ease-in 0.3s;
+  opacity: 100%;
+}
+
+.devide-kanan-row button:hover{
+  opacity: 70%;
+}
+
+.devide-kanan-row button img{
+  width: 20px;
+  height: 20px;
+}
+
+.nothing{
+  background-color: rgb(196, 28, 28);
+}
+
+.nothing h4{
+  margin: 0;
+  color: #ffffff;
+  padding: 5px;
+  text-align: center;
+  width: 710px;
+}

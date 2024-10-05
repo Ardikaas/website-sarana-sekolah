@@ -6,12 +6,16 @@ import KepsekDashboard from "./pages/KepsekDashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
+import CreateClass from "./pages/CreateClass";
+import EditClass from "./pages/EditClass";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/create-class" element={<CreateClass />} />
+        <Route path="/edit-class/:id" element={<EditClass />} />
         <Route
           path="/create-user"
           element={
