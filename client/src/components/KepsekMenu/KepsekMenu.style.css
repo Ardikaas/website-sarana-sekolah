@@ -1,0 +1,32 @@
+.gurumenu-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.gurumenu-card{
+  display: flex;
+  flex-direction: column;
+  background-color: #F2B541;
+  align-items: center;
+  padding: 40px;
+  gap: 30px;
+  border-radius: 5px;
+}
+
+.gurumenu-card a{
+  background-color: #202020;
+  color: #ffffff;
+  text-decoration: none;
+  width: 250px;
+  text-align: center;
+  padding: 15px 0px;
+  border-radius: 40px;
+  transition: ease-in 0.3s;
+}
+
+.gurumenu-card a:hover{
+  background-color: #ffffff;
+  color: #F2B541;
+}

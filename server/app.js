@@ -6,6 +6,7 @@ const cors = require("cors");
 const KelasController = require("./controllers/kelasController");
 const protect = require("./middleware/authMiddleware");
 const ReviewController = require("./controllers/reviewController");
+const KepsekController = require("./controllers/kepsekController");
 require("dotenv").config();
 
 const uri = process.env.URI;
@@ -106,6 +107,14 @@ app.post("/kelas/:id/review-kelas", protect, async (req, res) => {
 
 app.post("/user/coba", protect, async (req, res) => {
   ReviewController.historyReview(req, res);
+});
+
+app.get("/nilai-guru", async (req, res) => {
+  KepsekController.getAllNilai(req, res);
+});
+
+app.post("/nilai-guru", async (req, res) => {
+  KepsekController.addNilai(req, res);
 });
 
 app.listen(port, () => {

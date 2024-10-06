@@ -12,6 +12,8 @@ import AddFacility from "./pages/AddFacility";
 import ChooseClass from "./pages/ChooseClass";
 import UseClass from "./pages/UseClass";
 import HistoryReview from "./pages/HistoryReview";
+import KepsekReview from "./pages/KepsekReview";
+import HistoryKepsek from "./pages/HistoryKepsek";
 
 function App() {
   return (
@@ -67,6 +69,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/kepsek-review" element={<KepsekReview />} />
+        <Route path="/kepsek-history" element={<HistoryKepsek />} />
       </Routes>
     </Router>
   );
