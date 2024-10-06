@@ -12,7 +12,7 @@ const HistoryReviewList = () => {
           .find((row) => row.startsWith("token="))
           ?.split("=")[1];
 
-        const response = await fetch("http://localhost:8080/user/coba", {
+        const response = await fetch("http://localhost:8080/user/history", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

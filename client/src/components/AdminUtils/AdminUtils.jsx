@@ -2,6 +2,7 @@ import "./AdminUtils.style.css";
 import UserList from "../UserList/UserList";
 import ClassList from "../ClassList/ClassList";
 import { useState } from "react";
+import LogbookKepsek from "../LogbookKepsek/LogbookKepsek";
 
 const AdminUtils = () => {
   const [activeComponent, setActiveComponent] = useState("user");
@@ -28,11 +29,19 @@ const AdminUtils = () => {
           List Kelas
         </a>
         <a href="">Logbook Guru</a>
+        <a
+          href="#"
+          className={activeComponent === "logbookkepsek" ? "active" : ""}
+          onClick={() => handleMenuClick("logbookkepsek")}
+        >
+          Logbook Kepsek
+        </a>
       </div>
       <div className="adminutils-content">
         <h2 className="title-admin">Dashboard Pemantauan Sarana Sekolah</h2>
         {activeComponent === "user" && <UserList />}
         {activeComponent === "class" && <ClassList />}
+        {activeComponent === "logbookkepsek" && <LogbookKepsek />}
       </div>
     </div>
   );

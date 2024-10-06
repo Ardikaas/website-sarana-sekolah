@@ -1,11 +1,10 @@
-import "./HistoryKepsekList.style.css";
 import { useEffect, useState } from "react";
+import "./LogBookKepsek.style.css";
 
-const HistoryKepsekList = () => {
+const LogbookKepsek = () => {
   const [dataGuru, setDataGuru] = useState([]);
 
   useEffect(() => {
-    // Memanggil API untuk mendapatkan data nilai guru
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:8080/nilai-guru");
@@ -24,7 +23,7 @@ const HistoryKepsekList = () => {
   }, []);
 
   return (
-    <div className="historykepseklist-container">
+    <div className="logbookkepsek-container">
       {dataGuru.map((guru) => (
         <div className="formauto formauto-gap" key={guru._id}>
           <div className="formauto-devide tambah-formauto-devide">
@@ -91,11 +90,8 @@ const HistoryKepsekList = () => {
           </div>
         </div>
       ))}
-      <a href="/kepsek-dashboard" className="historykepseklist-container-a">
-        Kembali
-      </a>
     </div>
   );
 };
 
-export default HistoryKepsekList;
+export default LogbookKepsek;

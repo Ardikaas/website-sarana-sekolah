@@ -69,8 +69,22 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/kepsek-review" element={<KepsekReview />} />
-        <Route path="/kepsek-history" element={<HistoryKepsek />} />
+        <Route
+          path="/kepsek-review"
+          element={
+            <ProtectedRoute allowedRoles={["kepsek"]}>
+              <KepsekReview />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/kepsek-history"
+          element={
+            <ProtectedRoute allowedRoles={["kepsek"]}>
+              <HistoryKepsek />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

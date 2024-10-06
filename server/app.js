@@ -105,8 +105,12 @@ app.post("/kelas/:id/review-kelas", protect, async (req, res) => {
   ReviewController.addReview(req, res);
 });
 
-app.post("/user/coba", protect, async (req, res) => {
+app.post("/user/history", protect, async (req, res) => {
   ReviewController.historyReview(req, res);
+});
+
+app.get("/user/history/:id", async (req, res) => {
+  ReviewController.historyReviewId(req, res);
 });
 
 app.get("/nilai-guru", async (req, res) => {

@@ -4,6 +4,7 @@ const User = require("../models/userModel");
 const ReviewController = {
   addReview,
   historyReview,
+  historyReviewId,
 };
 
 async function addReview(req, res) {
@@ -128,6 +129,37 @@ async function historyReview(req, res) {
 
     const userId = req.user._id;
     const user = await User.findById(userId).select("history");
+
+    if (!user) {
+      return res.status(404).json({
+        status: {
+          code: 404,
+          message: "User not found",
+        },
+      });
+    }
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: user.history,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: {
+        code: 500,
+        message: error.message,
+      },
+    });
+  }
+}
+
+async function historyReviewId(req, res) {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id).select("history");
 
     if (!user) {
       return res.status(404).json({
