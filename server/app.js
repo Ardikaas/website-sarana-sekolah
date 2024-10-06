@@ -104,6 +104,10 @@ app.post("/kelas/:id/review-kelas", protect, async (req, res) => {
   ReviewController.addReview(req, res);
 });
 
+app.post("/user/coba", protect, async (req, res) => {
+  ReviewController.historyReview(req, res);
+});
+
 app.listen(port, () => {
   console.log(`listening on port http://localhost:${port}`);
 });

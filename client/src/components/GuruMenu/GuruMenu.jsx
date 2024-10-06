@@ -5,7 +5,7 @@ const GuruMenu = () => {
     <div className="gurumenu-container">
       <div className="gurumenu-card">
         <a href="/choose-class">Form Penilaian Kelas</a>
-        <a href="">History Penilaian Kelas</a>
+        <a href="/history-review">History Penilaian Kelas</a>
       </div>
     </div>
   );

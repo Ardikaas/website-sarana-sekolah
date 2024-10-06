@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 
 const ReviewController = {
   addReview,
+  historyReview,
 };
 
 async function addReview(req, res) {
@@ -103,6 +104,46 @@ async function addReview(req, res) {
         code: 200,
         message: "Review successfully added",
       },
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: {
+        code: 500,
+        message: error.message,
+      },
+    });
+  }
+}
+
+async function historyReview(req, res) {
+  try {
+    if (!req.user || !req.user._id) {
+      return res.status(400).json({
+        status: {
+          code: 400,
+          message: "Invalid user information",
+        },
+      });
+    }
+
+    const userId = req.user._id;
+    const user = await User.findById(userId).select("history");
+
+    if (!user) {
+      return res.status(404).json({
+        status: {
+          code: 404,
+          message: "User not found",
+        },
+      });
+    }
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: user.history,
     });
   } catch (error) {
     res.status(500).json({

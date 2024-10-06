@@ -1,0 +1,58 @@
+.historyreview-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  margin-bottom: 100px;
+}
+
+.historyreview-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #F2B541;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.historyreview-row h1{
+  margin: 0;
+  background-color: #202020;
+  color: #ffffff;
+  width: 50px;
+  height: 50px;
+  font-size: 1.3rem;
+  text-align: center;
+  align-content: center;
+}
+
+
+.historyreview-row-tanggal{
+  margin: 0;
+  padding: 5px 20px;
+  border-right: 3px solid #202020;
+  width: 180px;
+  text-align: center;
+}
+
+.historyreview-row-jam{
+  margin: 0;
+  padding: 5px 20px;
+  width: 150px;
+  text-align: center;
+}
+
+.historyreview-row a{
+  background-color: #202020;
+  color: #ffffff;
+  padding: 7px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: ease-in 0.3s;
+}
+
+.historyreview-row a:hover{
+  background-color: #ffffff;
+  color: #F2B541;
+}
