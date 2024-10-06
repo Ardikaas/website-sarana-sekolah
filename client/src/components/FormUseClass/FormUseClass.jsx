@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./FormUseClass.style.css";
 
 const FormUseClass = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [classData, setClassData] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +26,20 @@ const FormUseClass = () => {
     return <div>Loading...</div>;
   }
 
+  const handleConditionChange = (itemId, condition) => {
+    setReviews((prevReviews) => {
+      const existingReviewIndex = prevReviews.findIndex(
+        (review) => review.itemId === itemId
+      );
+      if (existingReviewIndex !== -1) {
+        const updatedReviews = [...prevReviews];
+        updatedReviews[existingReviewIndex].condition = condition;
+        return updatedReviews;
+      }
+      return [...prevReviews, { itemId, condition }];
+    });
+  };
+
   const renderCategoryItems = (items) => {
     return items.map((item) => (
       <div className="formuseclass-category-card" key={item._id}>
@@ -31,9 +47,17 @@ const FormUseClass = () => {
         <div className="category-card-pil">
           <h4 className="category-card-pil-tit">Kondisi</h4>
           <h4>:</h4>
-          <input type="radio" name={`condition-${item._id}`} />
+          <input
+            type="radio"
+            name={`condition-${item._id}`}
+            onChange={() => handleConditionChange(item._id, "true")}
+          />
           <h4 className="lebar">Baik</h4>
-          <input type="radio" name={`condition-${item._id}`} />
+          <input
+            type="radio"
+            name={`condition-${item._id}`}
+            onChange={() => handleConditionChange(item._id, "false")}
+          />
           <h4>Buruk</h4>
         </div>
       </div>
@@ -52,6 +76,44 @@ const FormUseClass = () => {
         {items.length > 0 && renderCategoryItems(items)}
       </>
     );
+  };
+
+  const handleSubmit = async () => {
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+
+    if (!token) {
+      console.error("Token not found");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/kelas/${id}/review-kelas`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ reviews }),
+        }
+      );
+
+      if (response.ok) {
+        alert("Review submitted successfully");
+        navigate("/guru-dashboard");
+      } else {
+        const errorData = await response.json();
+        console.error("Error submitting review:", errorData);
+        alert("Gagal mengirim review. Silakan coba lagi.");
+      }
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      alert("Terjadi kesalahan saat mengirim review. Silakan coba lagi.");
+    }
   };
 
   return (
@@ -75,6 +137,20 @@ const FormUseClass = () => {
               )}
             </div>
           </div>
+        </div>
+        <div className="formuseclass-button">
+          <button
+            className="formuseclass-button-kembali"
+            onClick={() => navigate(-1)}
+          >
+            Kembali
+          </button>
+          <button
+            className="formuseclass-button-submit"
+            onClick={handleSubmit} // Mengirimkan data saat klik submit
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>

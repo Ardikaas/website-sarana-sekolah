@@ -1,0 +1,117 @@
+const Kelas = require("../models/kelasModel");
+const User = require("../models/userModel");
+
+const ReviewController = {
+  addReview,
+};
+
+async function addReview(req, res) {
+  try {
+    if (!req.user || !req.user._id) {
+      return res.status(400).json({
+        status: {
+          code: 400,
+          message: "Invalid user information",
+        },
+      });
+    }
+
+    const { id } = req.params;
+    const userId = req.user._id;
+    const { reviews } = req.body;
+    const kelas = await Kelas.findById(id);
+    const user = await User.findById(userId);
+
+    if (!kelas || !reviews || !Array.isArray(reviews)) {
+      return res.status(400).json({
+        status: {
+          code: 400,
+          message: "Invalid data or class not found",
+        },
+      });
+    }
+
+    let itemFoundInCategory = false;
+
+    for (const review of reviews) {
+      const { itemId, condition } = review;
+      const categoryList = [
+        "saranas",
+        "prasaranas",
+        "mediaBelajars",
+        "sumberBelajars",
+      ];
+
+      itemFoundInCategory = false;
+
+      for (const category of categoryList) {
+        const item = kelas[category].id(itemId);
+        if (item) {
+          itemFoundInCategory = true;
+
+          if (item.condition.toString() !== condition) {
+            item.condition = condition === "true";
+            item.updatedAt = new Date();
+          }
+          break;
+        }
+      }
+
+      if (!itemFoundInCategory) {
+        return res.status(404).json({
+          status: {
+            code: 404,
+            message: `Item with ID ${itemId} not found`,
+          },
+        });
+      }
+    }
+
+    const historyEntry = {
+      className: kelas.className,
+      classId: kelas._id,
+      sarana: kelas.saranas.map((item) => ({
+        itemName: item.name,
+        condition: item.condition.toString(),
+        reviewedAt: new Date(),
+      })),
+      prasarana: kelas.prasaranas.map((item) => ({
+        itemName: item.name,
+        condition: item.condition.toString(),
+        reviewedAt: new Date(),
+      })),
+      mediaBelajar: kelas.mediaBelajars.map((item) => ({
+        itemName: item.name,
+        condition: item.condition.toString(),
+        reviewedAt: new Date(),
+      })),
+      sumberBelajar: kelas.sumberBelajars.map((item) => ({
+        itemName: item.name,
+        condition: item.condition.toString(),
+        reviewedAt: new Date(),
+      })),
+      reviewedAt: new Date(),
+    };
+
+    user.history.push(historyEntry);
+
+    await kelas.save();
+    await user.save();
+
+    return res.status(200).json({
+      status: {
+        code: 200,
+        message: "Review successfully added",
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: {
+        code: 500,
+        message: error.message,
+      },
+    });
+  }
+}
+
+module.exports = ReviewController;

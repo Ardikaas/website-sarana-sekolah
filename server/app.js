@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const UserController = require("./controllers/userContoller");
 const cors = require("cors");
 const KelasController = require("./controllers/kelasController");
+const protect = require("./middleware/authMiddleware");
+const ReviewController = require("./controllers/reviewController");
 require("dotenv").config();
 
 const uri = process.env.URI;
@@ -96,6 +98,10 @@ app.post("/kelas/:id/sumberbelajar", async (req, res) => {
 
 app.delete("/kelas/:id/sumberbelajar/:sumberbelajarsId", async (req, res) => {
   KelasController.deleteSumberBelajar(req, res);
+});
+
+app.post("/kelas/:id/review-kelas", protect, async (req, res) => {
+  ReviewController.addReview(req, res);
 });
 
 app.listen(port, () => {

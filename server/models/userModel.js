@@ -2,22 +2,74 @@ const mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema(
   {
-    sarana: {
-      type: Array,
-      required: [false],
+    className: {
+      type: String,
+      required: true,
     },
-    prasarana: {
-      type: Array,
-      required: [false],
-    },
-    sarprasluar: {
-      type: Array,
-      required: [false],
-    },
-    kreasiguru: {
-      type: Boolean,
-      required: [true],
-    },
+    sarana: [
+      {
+        itemName: {
+          type: String,
+          required: [true],
+        },
+        condition: {
+          type: String,
+          required: [true],
+        },
+        reviewedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+    prasarana: [
+      {
+        itemName: {
+          type: String,
+          required: [true],
+        },
+        condition: {
+          type: String,
+          required: [true],
+        },
+        reviewedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+    mediaBelajar: [
+      {
+        itemName: {
+          type: String,
+          required: [true],
+        },
+        condition: {
+          type: String,
+          required: [true],
+        },
+        reviewedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+    sumberBelajar: [
+      {
+        itemName: {
+          type: String,
+          required: [true],
+        },
+        condition: {
+          type: String,
+          required: [true],
+        },
+        reviewedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
   },
   {
     timestamps: [true],
