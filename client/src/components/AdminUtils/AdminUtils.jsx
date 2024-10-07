@@ -28,7 +28,6 @@ const AdminUtils = () => {
         >
           List Kelas
         </a>
-        <a href="">Logbook Guru</a>
         <a
           href="#"
           className={activeComponent === "logbookkepsek" ? "active" : ""}

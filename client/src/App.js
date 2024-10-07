@@ -14,6 +14,7 @@ import UseClass from "./pages/UseClass";
 import HistoryReview from "./pages/HistoryReview";
 import KepsekReview from "./pages/KepsekReview";
 import HistoryKepsek from "./pages/HistoryKepsek";
+import HistoryDetail from "./pages/HistoryDetail";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
         <Route path="/choose-class" element={<ChooseClass />} />
         <Route path="/use-class/:id" element={<UseClass />} />
         <Route path="/history-review" element={<HistoryReview />} />
+        <Route path="/history-detail/:id" element={<HistoryDetail />} />
         <Route
           path="/kepsek-dashboard"
           element={
