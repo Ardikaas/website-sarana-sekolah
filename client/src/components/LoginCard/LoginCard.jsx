@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginCard = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const LoginCard = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/user/login", {
+      const response = await fetch(`${api_url}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,11 +26,9 @@ const LoginCard = () => {
 
       const data = await response.json();
       if (response.ok) {
-        // Simpan token di cookies
         document.cookie = `token=${data.token}; path=/; max-age=3600; secure; samesite=strict;`;
         document.cookie = `role=${data.data.role}; path=/; max-age=3600; secure; samesite=strict;`;
         alert("Login Successful!");
-        // Kamu bisa redirect ke halaman lain di sini jika perlu
         switch (data.data.role) {
           case "admin":
             navigate("/admin-dashboard");
@@ -44,7 +43,6 @@ const LoginCard = () => {
             alert("Role not recognized!");
         }
       } else {
-        // Menangani kesalahan
         alert(data.status.message);
       }
     } catch (error) {
@@ -54,7 +52,7 @@ const LoginCard = () => {
   };
   return (
     <div className="logincard-container">
-      <h1>DASHBOARD PEMANTAUAN SARANA SEKOLAH</h1>
+      <h1>DASHBOARD PEMANTAUAN SARANA & PRASARANA</h1>
       <div className="logincard">
         <img src={logo} alt="logo tutwurihandayani" />
         <input

@@ -2,6 +2,7 @@ import "./ReviewList.style.css";
 import { useEffect, useState } from "react";
 
 const HistoryReviewList = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -12,7 +13,7 @@ const HistoryReviewList = () => {
           .find((row) => row.startsWith("token="))
           ?.split("=")[1];
 
-        const response = await fetch("http://localhost:8080/user/history", {
+        const response = await fetch(`${api_url}/user/history`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -32,7 +33,7 @@ const HistoryReviewList = () => {
     };
 
     fetchReviews();
-  }, []);
+  }, [api_url]);
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };

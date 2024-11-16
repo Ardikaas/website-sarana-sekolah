@@ -37,7 +37,7 @@ const AdminUtils = () => {
         </a>
       </div>
       <div className="adminutils-content">
-        <h2 className="title-admin">Dashboard Pemantauan Sarana Sekolah</h2>
+        <h2 className="title-admin">Dashboard Pemantauan Sarana & Prasarana</h2>
         {activeComponent === "user" && <UserList />}
         {activeComponent === "class" && <ClassList />}
         {activeComponent === "logbookkepsek" && <LogbookKepsek />}

@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Untuk mendapatkan :id dari URL
+import { useParams } from "react-router-dom";
 import trash from "../assets/delete.png";
 import "./FormEditClass.style.css";
 
 const FormEditClass = () => {
-  const { id } = useParams(); // Ambil id dari parameter URL
+  const api_url = process.env.REACT_APP_API_URL;
+  const { id } = useParams();
   const [classData, setClassData] = useState(null);
-  const [activeCategory, setActiveCategory] = useState("saranas"); // Default Sarana
-  const [items, setItems] = useState([]); // Menyimpan data item yang ditampilkan
+  const [activeCategory, setActiveCategory] = useState("saranas");
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    // Ambil data kelas berdasarkan ID
     const fetchClassData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/kelas/${id}`);
+        const response = await fetch(`${api_url}/kelas/${id}`);
         const data = await response.json();
         if (data.status.code === 200) {
           setClassData(data.data);
-          setItems(data.data.saranas); // Default item adalah Sarana
+          setItems(data.data.saranas);
         }
       } catch (error) {
         console.error("Error fetching class data:", error);
       }
     };
     fetchClassData();
-  }, [id]);
+  }, [api_url, id]);
 
-  // Fungsi untuk menghandle klik tombol kategori (Sarana, Prasarana, dll)
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
     switch (category) {
@@ -53,7 +52,6 @@ const FormEditClass = () => {
     );
     if (confirmDelete) {
       try {
-        // Tentukan kategori yang benar untuk URL
         let category;
         switch (activeCategory) {
           case "saranas":
@@ -72,8 +70,8 @@ const FormEditClass = () => {
             category = "";
         }
 
-        const deleteUrl = `http://localhost:8080/kelas/${id}/${category}/${itemId}`;
-        console.log("Deleting item at:", deleteUrl); // Log URL yang akan digunakan
+        const deleteUrl = `${api_url}/kelas/${id}/${category}/${itemId}`;
+        console.log("Deleting item at:", deleteUrl);
 
         const response = await fetch(deleteUrl, {
           method: "DELETE",
@@ -86,7 +84,6 @@ const FormEditClass = () => {
           return;
         }
 
-        // Update state untuk menghapus item dari list
         setItems(items.filter((item) => item._id !== itemId));
         alert("Item berhasil dihapus.");
       } catch (error) {
@@ -150,28 +147,61 @@ const FormEditClass = () => {
                 Kembali
               </a>
             </div>
-
-            {items.length > 0 ? (
-              items.map((item) => (
-                <div className="devide-kanan-row" key={item._id}>
-                  <h4 className="devide-kanan-row-nama">{item.name}</h4>
-                  <h4
-                    className={`devide-kanan-row-kondisi ${
-                      item.condition ? "bagus" : "buruk"
-                    }`}
-                  >
-                    {item.condition ? "Bagus" : "Buruk"}
-                  </h4>
-                  <button onClick={() => handleDelete(item._id)}>
-                    <img src={trash} alt="Delete" />
-                  </button>
+            <div className="card-facility-container">
+              {["saranas", "prasaranas"].includes(activeCategory) && (
+                <div className="card-facility-new-container">
+                  {items.length > 0 ? (
+                    items.map((item) => (
+                      <div className="card-facility-new" key={item._id}>
+                        <div className="card-facility-new-top">
+                          <h1>{item.name}</h1>
+                          <button onClick={() => handleDelete(item._id)}>
+                            <img src={trash} alt="Delete" />
+                          </button>
+                        </div>
+                        <div className="card-facility-new-column">
+                          <div className="card-facility-new-row">
+                            <h4 className="gap-card-fasil">Bagus</h4>
+                            <h4>: {item.good_quantity || 0}</h4>
+                          </div>
+                          <div className="card-facility-new-row">
+                            <h4 className="gap-card-fasil">Rusak</h4>
+                            <h4>: {item.bad_quantity || 0}</h4>
+                          </div>
+                          <div className="card-facility-new-row">
+                            <h4 className="gap-card-fasil">Jumlah</h4>
+                            <h4>: {item.total_quantity || 0}</h4>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="nothing">
+                      <h4>Null</h4>
+                    </div>
+                  )}
                 </div>
-              ))
-            ) : (
-              <div className="nothing">
-                <h4>Null</h4>
-              </div>
-            )}
+              )}
+
+              {["mediaBelajars", "sumberBelajars"].includes(activeCategory) && (
+                <div className="card-facility-old-container">
+                  {items.length > 0 ? (
+                    items.map((item) => (
+                      <div className="devide-kanan-row" key={item._id}>
+                        <h4 className="devide-kanan-row-nama">{item.name}</h4>
+                        <button onClick={() => handleDelete(item._id)}>
+                          <img src={trash} alt="Delete" />
+                        </button>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="nothing">
+                      <h4>Null</h4>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

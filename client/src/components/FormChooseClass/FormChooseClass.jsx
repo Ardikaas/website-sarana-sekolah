@@ -2,10 +2,11 @@ import "./FormChooseClass.style.css";
 import { useEffect, useState } from "react";
 
 const FormChooseClass = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/kelas/")
+    fetch(`${api_url}/kelas/`)
       .then((response) => response.json())
       .then((data) => {
         if (data.status.code === 200) {
@@ -15,7 +16,7 @@ const FormChooseClass = () => {
       .catch((error) => {
         console.error("Error fetching classes:", error);
       });
-  }, []);
+  }, [api_url]);
   return (
     <div className="formchooseclass-container">
       <div className="formchooseclass-card">

@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import "./LogBookKepsek.style.css";
 
 const LogbookKepsek = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [dataGuru, setDataGuru] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/nilai-guru");
+        const response = await fetch(`${api_url}/nilai-guru`);
         const result = await response.json();
         if (result.status.code === 200) {
           setDataGuru(result.data);
@@ -20,7 +21,7 @@ const LogbookKepsek = () => {
     };
 
     fetchData();
-  }, []);
+  }, [api_url]);
 
   return (
     <div className="logbookkepsek-container">

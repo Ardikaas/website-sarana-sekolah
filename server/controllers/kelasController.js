@@ -107,7 +107,7 @@ async function deleteKelas(req, res) {
 async function addSarana(req, res) {
   try {
     const { id } = req.params;
-    const { name, inUse, condition } = req.body;
+    const { name, total_quantity } = req.body;
 
     const kelas = await Kelas.findById(id);
     if (!kelas) {
@@ -121,8 +121,7 @@ async function addSarana(req, res) {
 
     kelas.saranas.push({
       name,
-      inUse,
-      condition,
+      total_quantity,
     });
 
     await kelas.save();
@@ -193,7 +192,7 @@ async function deleteSarana(req, res) {
 async function addPrasarana(req, res) {
   try {
     const { id } = req.params;
-    const { name, inUse, condition } = req.body;
+    const { name, total_quantity } = req.body;
 
     const kelas = await Kelas.findById(id);
     if (!kelas) {
@@ -207,8 +206,7 @@ async function addPrasarana(req, res) {
 
     kelas.prasaranas.push({
       name,
-      inUse,
-      condition,
+      total_quantity,
     });
 
     await kelas.save();
@@ -279,7 +277,7 @@ async function deletePrasarana(req, res) {
 async function addMediaBelajar(req, res) {
   try {
     const { id } = req.params;
-    const { name, inUse, condition } = req.body;
+    const { name } = req.body;
 
     const kelas = await Kelas.findById(id);
     if (!kelas) {
@@ -293,8 +291,6 @@ async function addMediaBelajar(req, res) {
 
     kelas.mediaBelajars.push({
       name,
-      inUse,
-      condition,
     });
 
     await kelas.save();
@@ -365,7 +361,7 @@ async function deleteMediaBelajar(req, res) {
 async function addSumberBelajar(req, res) {
   try {
     const { id } = req.params;
-    const { name, inUse, condition } = req.body;
+    const { name } = req.body;
 
     const kelas = await Kelas.findById(id);
     if (!kelas) {
@@ -379,8 +375,6 @@ async function addSumberBelajar(req, res) {
 
     kelas.sumberBelajars.push({
       name,
-      inUse,
-      condition,
     });
 
     await kelas.save();

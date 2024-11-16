@@ -2,6 +2,7 @@ import "./FormCreateUser.style.css";
 import { useState } from "react";
 
 const FormCreateUser = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [username, setUsername] = useState("");
   const [mapel, setMapel] = useState("");
   const [role, setRole] = useState("");
@@ -23,7 +24,7 @@ const FormCreateUser = () => {
     if (!confirmation) return;
 
     try {
-      const response = await fetch("http://localhost:8080/user", {
+      const response = await fetch(`${api_url}/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

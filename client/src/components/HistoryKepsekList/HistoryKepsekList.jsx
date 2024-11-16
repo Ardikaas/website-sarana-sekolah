@@ -2,13 +2,13 @@ import "./HistoryKepsekList.style.css";
 import { useEffect, useState } from "react";
 
 const HistoryKepsekList = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [dataGuru, setDataGuru] = useState([]);
 
   useEffect(() => {
-    // Memanggil API untuk mendapatkan data nilai guru
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/nilai-guru");
+        const response = await fetch(`${api_url}/nilai-guru`);
         const result = await response.json();
         if (result.status.code === 200) {
           setDataGuru(result.data);
@@ -21,7 +21,7 @@ const HistoryKepsekList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [api_url]);
 
   return (
     <div className="historykepseklist-container">

@@ -5,13 +5,14 @@ import edit from "../assets/edit.png";
 import trash from "../assets/delete.png";
 
 const ClassList = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [kelasList, setKelasList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchKelas = async () => {
       try {
-        const response = await fetch("http://localhost:8080/kelas");
+        const response = await fetch(`${api_url}/kelas`);
         const result = await response.json();
         if (result.status.code === 200) {
           setKelasList(result.data);
@@ -25,13 +26,13 @@ const ClassList = () => {
     };
 
     fetchKelas();
-  }, []);
+  }, [api_url]);
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Yakin ingin menghapus kelas ini?");
     if (confirmDelete) {
       try {
-        const response = await fetch(`http://localhost:8080/kelas/${id}`, {
+        const response = await fetch(`${api_url}/kelas/${id}`, {
           method: "DELETE",
         });
         if (response.ok) {
@@ -47,7 +48,7 @@ const ClassList = () => {
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit-class/${id}`); // Gunakan navigate untuk berpindah halaman
+    navigate(`/edit-class/${id}`);
   };
 
   const formatWaktu = (utcString) => {

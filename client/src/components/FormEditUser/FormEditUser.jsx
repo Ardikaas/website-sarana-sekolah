@@ -1,7 +1,9 @@
 import "./FormEditUser.style.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 const FormEditUser = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const { id } = useParams();
   const [username, setUsername] = useState("");
   const [mapel, setMapel] = useState("");
@@ -16,7 +18,7 @@ const FormEditUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/user/${id}`, {
+        const response = await fetch(`${api_url}/user/${id}`, {
           method: "GET",
         });
         const data = await response.json();
@@ -33,7 +35,7 @@ const FormEditUser = () => {
     };
 
     fetchUser();
-  }, [id]);
+  }, [api_url, id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +49,7 @@ const FormEditUser = () => {
     if (!confirmation) return;
 
     try {
-      const response = await fetch(`http://localhost:8080/user/${id}`, {
+      const response = await fetch(`${api_url}/user/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

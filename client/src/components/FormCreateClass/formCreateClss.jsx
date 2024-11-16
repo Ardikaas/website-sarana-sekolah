@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const FormCreateClass = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [className, setClassName] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const FormCreateClass = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/kelas", {
+      const response = await fetch(`${api_url}/kelas`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

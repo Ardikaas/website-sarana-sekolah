@@ -32,7 +32,10 @@ const FormKepsek = () => {
         });
         const result = await response.json();
         if (response.ok) {
-          setGurus(result.data);
+          const filteredGurus = result.data.filter(
+            (user) => user.role === "guru"
+          );
+          setGurus(filteredGurus);
         } else {
           console.error(result.status.message);
         }
@@ -299,19 +302,21 @@ const FormKepsek = () => {
             </div>
           ))}
         </div>
-        <div className={isClassSelected ? "hide" : "formkepsek-pilih-kelas"}>
-          <h1>Pilih Kelas</h1>
-          <div className="formkepsek-pilih-kelas-grid">
-            {classes.map((kelas) => (
-              <button
-                key={kelas._id}
-                onClick={() => handleClassSelect(kelas._id, kelas.className)}
-              >
-                {kelas.className}
-              </button>
-            ))}
+        {isGuruSelected && (
+          <div className={isClassSelected ? "hide" : "formkepsek-pilih-kelas"}>
+            <h1>Pilih Kelas</h1>
+            <div className="formkepsek-pilih-kelas-grid">
+              {classes.map((kelas) => (
+                <button
+                  key={kelas._id}
+                  onClick={() => handleClassSelect(kelas._id, kelas.className)}
+                >
+                  {kelas.className}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         <div
           className={`${
             !(isGuruSelected && isClassSelected) ? "hide" : "formauto"
@@ -320,7 +325,9 @@ const FormKepsek = () => {
           <h1>Form Penilaian Guru</h1>
           <div className="formauto-devide">
             <div className="formauto-devide-kiri">
-              <h4>Nama : {selectedGuru.username || "Silakan pilih guru"}</h4>
+              <h4>
+                Nama Guru : {selectedGuru.username || "Silakan pilih guru"}
+              </h4>
               <h4>
                 Mata Pelajaran : {selectedGuru.mapel || "Silakan pilih guru"}
               </h4>

@@ -6,15 +6,19 @@ const saranaItem = mongoose.Schema(
       type: String,
       required: [true],
     },
-    inUse: {
-      type: Boolean,
-      required: [true],
-      default: false,
+    good_quantity: {
+      type: Number,
+      required: [false],
+      default: null,
     },
-    condition: {
-      type: Boolean,
+    bad_quantity: {
+      type: Number,
+      required: [false],
+      default: null,
+    },
+    total_quantity: {
+      type: Number,
       required: [true],
-      default: true,
     },
   },
   {
@@ -28,15 +32,19 @@ const prasaranaItem = mongoose.Schema(
       type: String,
       required: [true],
     },
-    inUse: {
-      type: Boolean,
-      required: [true],
-      default: false,
+    good_quantity: {
+      type: Number,
+      required: [false],
+      default: null,
     },
-    condition: {
-      type: Boolean,
+    bad_quantity: {
+      type: Number,
+      required: [false],
+      default: null,
+    },
+    total_quantity: {
+      type: Number,
       required: [true],
-      default: true,
     },
   },
   {
@@ -49,11 +57,6 @@ const mediaBelajarItem = mongoose.Schema(
     name: {
       type: String,
       required: [true],
-    },
-    inUse: {
-      type: Boolean,
-      required: [true],
-      default: false,
     },
     condition: {
       type: Boolean,
@@ -71,11 +74,6 @@ const sumberBelajarItem = mongoose.Schema(
     name: {
       type: String,
       required: [true],
-    },
-    inUse: {
-      type: Boolean,
-      required: [true],
-      default: false,
     },
     condition: {
       type: Boolean,

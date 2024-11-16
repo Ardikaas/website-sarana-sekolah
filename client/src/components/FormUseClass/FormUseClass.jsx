@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./FormUseClass.style.css";
 
 const FormUseClass = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const { id } = useParams();
   const navigate = useNavigate();
   const [classData, setClassData] = useState(null);
@@ -11,7 +12,7 @@ const FormUseClass = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/kelas/${id}`);
+        const response = await fetch(`${api_url}/kelas/${id}`);
         const data = await response.json();
         setClassData(data.data);
       } catch (error) {
@@ -20,7 +21,7 @@ const FormUseClass = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [api_url, id]);
 
   if (!classData) {
     return <div>Loading...</div>;
@@ -90,17 +91,14 @@ const FormUseClass = () => {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:8080/kelas/${id}/review-kelas`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ reviews }),
-        }
-      );
+      const response = await fetch(`${api_url}/kelas/${id}/review-kelas`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ reviews }),
+      });
 
       if (response.ok) {
         alert("Review submitted successfully");
@@ -145,10 +143,7 @@ const FormUseClass = () => {
           >
             Kembali
           </button>
-          <button
-            className="formuseclass-button-submit"
-            onClick={handleSubmit} // Mengirimkan data saat klik submit
-          >
+          <button className="formuseclass-button-submit" onClick={handleSubmit}>
             Submit
           </button>
         </div>

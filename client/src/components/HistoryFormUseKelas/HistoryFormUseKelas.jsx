@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const HistoryFormUseKelas = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const { id } = useParams();
   const navigate = useNavigate();
   const [historyData, setHistoryData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // State untuk error
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,57 +18,57 @@ const HistoryFormUseKelas = () => {
           .find((row) => row.startsWith("token="));
         const token = tokenCookie ? tokenCookie.split("=")[1] : null;
 
-        console.log("Token:", token); // Log token untuk debugging
+        console.log("Token:", token);
 
         if (!token) {
           throw new Error("Token not found");
         }
 
-        const response = await fetch("http://localhost:8080/user/history", {
+        const response = await fetch(`${api_url}/user/history`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ id }), // Mengirimkan ID sebagai body request
+          body: JSON.stringify({ id }),
         });
 
-        console.log("Response status:", response.status); // Log status respons
+        console.log("Response status:", response.status);
 
         const result = await response.json();
-        console.log("API result:", result); // Log hasil dari API
+        console.log("API result:", result);
 
         if (result.status.code === 200) {
           const data = result.data.find((item) => item._id === id);
-          console.log("Fetched data:", data); // Log data yang didapat
+          console.log("Fetched data:", data);
 
           if (data) {
             setHistoryData(data);
           } else {
-            console.error("Data not found for the given ID."); // Log jika data tidak ditemukan
+            console.error("Data not found for the given ID.");
             setError("No data found for the given ID.");
           }
         } else {
           console.error("Error fetching data:", result.status.message);
-          setError(result.status.message); // Set error message dari API
+          setError(result.status.message);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        setError("An error occurred while fetching data."); // Set error message jika terjadi error
+        setError("An error occurred while fetching data.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [id]);
+  }, [api_url, id]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>; // Tampilkan pesan error jika ada
+    return <div>Error: {error}</div>;
   }
 
   if (!historyData) {
@@ -75,7 +76,7 @@ const HistoryFormUseKelas = () => {
   }
 
   const handleGoBack = () => {
-    navigate(-1); // Navigasi kembali
+    navigate(-1);
   };
 
   return (

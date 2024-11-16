@@ -5,21 +5,22 @@ import { useNavigate } from "react-router-dom";
 import "./UserList.style.css";
 
 const UserList = () => {
+  const api_url = process.env.REACT_APP_API_URL;
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8080/user")
+    fetch(`${api_url}/user`)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data.data);
       })
       .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  }, [api_url]);
 
   const deleteUser = (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      fetch(`http://localhost:8080/user/${id}`, {
+      fetch(`${api_url}/user/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())

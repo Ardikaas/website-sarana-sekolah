@@ -3,8 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./AddFacilityForm.style.css";
 
 const AddFacilityForm = () => {
+  const api_url = process.env.REACT_APP_API_URL;
+  console.log(api_url);
   const [name, setName] = useState("");
+  const [total_quantity, setTotalQuantity] = useState(1);
   const [title, setTitle] = useState("");
+  const [isQuantityRequired, setIsQuantityRequired] = useState(false);
   const navigate = useNavigate();
   const { id, category } = useParams();
 
@@ -16,6 +20,8 @@ const AddFacilityForm = () => {
       sumberBelajars: "Sumber Belajar",
     };
     setTitle(titleMap[category] || "Item");
+    const requiresQuantity = ["saranas", "prasaranas"].includes(category);
+    setIsQuantityRequired(requiresQuantity);
   }, [category]);
 
   const handleSubmit = async () => {
@@ -24,10 +30,19 @@ const AddFacilityForm = () => {
       return;
     }
 
-    const endpoint = `http://localhost:8080/kelas/${id}/${
+    if (total_quantity < 1) {
+      alert("Kuantitas harus minimal 1.");
+      return;
+    }
+
+    const endpoint = `${api_url}/kelas/${id}/${
       category.endsWith("s") ? category.slice(0, -1) : category
     }`;
     console.log("Fetching:", endpoint);
+    const payload = { name };
+    if (isQuantityRequired) {
+      payload.total_quantity = total_quantity;
+    }
 
     try {
       const response = await fetch(endpoint, {
@@ -35,7 +50,7 @@ const AddFacilityForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
@@ -60,6 +75,15 @@ const AddFacilityForm = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        {isQuantityRequired && (
+          <input
+            type="number"
+            placeholder="Kuantitas"
+            min="1"
+            value={total_quantity}
+            onChange={(e) => setTotalQuantity(parseInt(e.target.value))}
+          />
+        )}
         <div className="addfacilityform-card-button">
           <button
             className="addfacilityform-button-kembali"
