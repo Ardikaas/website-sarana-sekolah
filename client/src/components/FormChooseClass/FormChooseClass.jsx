@@ -1,8 +1,10 @@
 import "./FormChooseClass.style.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FormChooseClass = () => {
   const api_url = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
@@ -31,6 +33,13 @@ const FormChooseClass = () => {
           ))}
         </div>
       </div>
+      <button
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Kembali
+      </button>
     </div>
   );
 };

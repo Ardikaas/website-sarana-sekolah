@@ -4,8 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const HistoryFormUseKelas = () => {
   const api_url = process.env.REACT_APP_API_URL;
-  const { id } = useParams();
   const navigate = useNavigate();
+  const { id } = useParams();
   const [historyData, setHistoryData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,8 +17,6 @@ const HistoryFormUseKelas = () => {
           .split("; ")
           .find((row) => row.startsWith("token="));
         const token = tokenCookie ? tokenCookie.split("=")[1] : null;
-
-        console.log("Token:", token);
 
         if (!token) {
           throw new Error("Token not found");
@@ -33,27 +31,32 @@ const HistoryFormUseKelas = () => {
           body: JSON.stringify({ id }),
         });
 
-        console.log("Response status:", response.status);
+        console.log("Raw API Response:", response);
+
+        if (!response.ok) {
+          console.error(
+            "API response error:",
+            response.status,
+            response.statusText
+          );
+        }
 
         const result = await response.json();
-        console.log("API result:", result);
+        console.log("Parsed API Response:", result);
 
         if (result.status.code === 200) {
+          console.log("Success Data:", result.data);
           const data = result.data.find((item) => item._id === id);
-          console.log("Fetched data:", data);
-
+          console.log("Filtered Data:", data);
           if (data) {
             setHistoryData(data);
           } else {
-            console.error("Data not found for the given ID.");
             setError("No data found for the given ID.");
           }
         } else {
-          console.error("Error fetching data:", result.status.message);
           setError(result.status.message);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
         setError("An error occurred while fetching data.");
       } finally {
         setLoading(false);
@@ -63,77 +66,179 @@ const HistoryFormUseKelas = () => {
     fetchData();
   }, [api_url, id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!historyData) {
-    return <div>No data found</div>;
-  }
-
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-
   return (
     <div className="historyformusekelas-container">
-      <div className="historyuser-devide">
-        <div className="historyuser-devide-kiri">
-          <h1>10A</h1>
-          <button onClick={handleGoBack}>Kembali</button>
-        </div>
-        <div className="historyuser-devide-kanan">
-          <div className="historyuser-column">
-            <div className="historyuser-card-category">
-              <h2>Sarana</h2>
-              {historyData.sarana.map((item) => (
-                <div className="historyuser-card-item" key={item._id}>
-                  <h5 className="historyuser-itemname">{item.itemName}</h5>
-                  <h5 className="historyuser-itemcondition">
-                    {item.condition === "true" ? "Baik" : "Buruk"}
-                  </h5>
-                </div>
-              ))}
+      <div className="formuseclass-container">
+        <div className="formuseclass-card">
+          <h1 className="kasipad">History Pemakaian Kelas</h1>
+          <div className="formuseclass-devide">
+            <div className="formuseclass-left">
+              <h1 className="formuseclass-classname-tit">
+                {historyData ? historyData.className : "Loading..."}
+              </h1>
             </div>
-            <div className="historyuser-card-category">
-              <h2>Prasarana</h2>
-              {historyData.prasarana.map((item) => (
-                <div className="historyuser-card-item" key={item._id}>
-                  <h5 className="historyuser-itemname">{item.itemName}</h5>
-                  <h5 className="historyuser-itemcondition">
-                    {item.condition === "true" ? "Baik" : "Buruk"}
-                  </h5>
+            <div className="formuseclass-right">
+              <div className="formuseclass-right-sarana">
+                <h1>Sarana</h1>
+                <div className="formuseclass-right-sarana-con">
+                  {historyData &&
+                    historyData.sarana.map((item) => (
+                      <div className="formuseclass-right-card" key={item._id}>
+                        <h2>{item.itemName}</h2>
+                        <div className="formuseclass-right-card-incon">
+                          <div className="formuseclass-right-card-input">
+                            <h4>Bagus</h4>
+                            <input
+                              type="text"
+                              value={item.good_quantity}
+                              readOnly
+                            />
+                          </div>
+                          <div className="formuseclass-right-card-input">
+                            <h4>Rusak</h4>
+                            <input
+                              type="text"
+                              value={item.bad_quantity}
+                              readOnly
+                            />
+                          </div>
+                          <div className="formuseclass-right-card-input">
+                            <h4>Total</h4>
+                            <input
+                              type="text"
+                              value={item.total_quantity}
+                              readOnly
+                            />
+                          </div>
+                          <div className="formuseclass-right-card-input">
+                            <h4>Ket.</h4>
+                            <input
+                              type="text"
+                              value={item.additional}
+                              readOnly
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                 </div>
-              ))}
+              </div>
+              <div className="formuseclass-right-prasarana">
+                <h1>Prasarana</h1>
+                <div className="formuseclass-right-sarana-con">
+                  {historyData &&
+                    historyData.prasarana.map((item) => (
+                      <div className="formuseclass-right-card" key={item._id}>
+                        <h2>{item.itemName}</h2>
+                        <div className="formuseclass-right-card-incon">
+                          <div className="formuseclass-right-card-input">
+                            <h4>Bagus</h4>
+                            <input
+                              type="text"
+                              value={item.good_quantity}
+                              readOnly
+                            />
+                          </div>
+                          <div className="formuseclass-right-card-input">
+                            <h4>Rusak</h4>
+                            <input
+                              type="text"
+                              value={item.bad_quantity}
+                              readOnly
+                            />
+                          </div>
+                          <div className="formuseclass-right-card-input">
+                            <h4>Total</h4>
+                            <input
+                              type="text"
+                              value={item.total_quantity}
+                              readOnly
+                            />
+                          </div>
+                          <div className="formuseclass-right-card-input">
+                            <h4>Ket.</h4>
+                            <input
+                              type="text"
+                              value={item.additional}
+                              readOnly
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <div className="formuseclass-right-media">
+                <h1>Media Pembelajaran</h1>
+                {historyData &&
+                  historyData.mediaBelajar.map((item) => (
+                    <div className="formuseclass-right-card-old" key={item._id}>
+                      <h2>{item.itemName}</h2>
+                      <div className="formuseclass-right-card-inold">
+                        <h4 className="right-card-inold-tit">Kondisi</h4>
+                        <h4>:</h4>
+                        <div className="right-card-inold-rad">
+                          <input
+                            type="radio"
+                            name={`media-${item._id}`}
+                            checked={item.condition === "true"}
+                            readOnly
+                          />
+                          <h4>Baik</h4>
+                        </div>
+                        <div className="right-card-inold-rad">
+                          <input
+                            type="radio"
+                            name={`media-${item._id}`}
+                            checked={item.condition === "false"}
+                            readOnly
+                          />
+                          <h4>Buruk</h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+              <div className="formuseclass-right-sumber">
+                <h1>Sumber Pembelajaran</h1>
+                {historyData &&
+                  historyData.sumberBelajar.map((item) => (
+                    <div className="formuseclass-right-card-old" key={item._id}>
+                      <h2>{item.itemName}</h2>
+                      <div className="formuseclass-right-card-inold">
+                        <h4 className="right-card-inold-tit">Kondisi</h4>
+                        <h4>:</h4>
+                        <div className="right-card-inold-rad">
+                          <input
+                            type="radio"
+                            name={`sumber-${item._id}`}
+                            checked={item.condition === "true"}
+                            readOnly
+                          />
+                          <h4>Baik</h4>
+                        </div>
+                        <div className="right-card-inold-rad">
+                          <input
+                            type="radio"
+                            name={`sumber-${item._id}`}
+                            checked={item.condition === "false"}
+                            readOnly
+                          />
+                          <h4>Buruk</h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
-          <div className="historyuser-column">
-            <div className="historyuser-card-category">
-              <h2>Media Belajar</h2>
-              {historyData.mediaBelajar.map((item) => (
-                <div className="historyuser-card-item" key={item._id}>
-                  <h5 className="historyuser-itemname">{item.itemName}</h5>
-                  <h5 className="historyuser-itemcondition">
-                    {item.condition === "true" ? "Baik" : "Buruk"}
-                  </h5>
-                </div>
-              ))}
-            </div>
-            <div className="historyuser-card-category">
-              <h2>Sumber Belajar</h2>
-              {historyData.sumberBelajar.map((item) => (
-                <div className="historyuser-card-item" key={item._id}>
-                  <h5 className="historyuser-itemname">{item.itemName}</h5>
-                  <h5 className="historyuser-itemcondition">
-                    {item.condition === "true" ? "Baik" : "Buruk"}
-                  </h5>
-                </div>
-              ))}
-            </div>
+          <div className="formuseclass-button">
+            <button
+              className="formuseclass-button-kembali"
+              onClick={() => navigate(-1)}
+            >
+              Kembali
+            </button>
           </div>
         </div>
       </div>

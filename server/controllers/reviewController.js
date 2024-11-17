@@ -36,7 +36,14 @@ async function addReview(req, res) {
     let itemFoundInCategory = false;
 
     for (const review of reviews) {
-      const { itemId, condition } = review;
+      const {
+        itemId,
+        condition,
+        good_quantity,
+        bad_quantity,
+        total_quantity,
+        additional,
+      } = review;
       const categoryList = [
         "saranas",
         "prasaranas",
@@ -51,8 +58,41 @@ async function addReview(req, res) {
         if (item) {
           itemFoundInCategory = true;
 
-          if (item.condition.toString() !== condition) {
-            item.condition = condition === "true";
+          // Untuk sarana dan prasarana, kita hanya update kuantitas
+          if (category === "saranas" || category === "prasaranas") {
+            if (good_quantity !== undefined) {
+              item.good_quantity = good_quantity;
+            }
+            if (bad_quantity !== undefined) {
+              item.bad_quantity = bad_quantity;
+            }
+            if (total_quantity !== undefined) {
+              item.total_quantity = total_quantity;
+            }
+            if (additional !== undefined) {
+              item.additional = additional;
+            }
+            item.updatedAt = new Date();
+          } else {
+            if (
+              condition !== undefined &&
+              item.condition.toString() !== condition
+            ) {
+              item.condition = condition === "true";
+              item.updatedAt = new Date();
+            }
+            if (good_quantity !== undefined) {
+              item.good_quantity = good_quantity;
+            }
+            if (bad_quantity !== undefined) {
+              item.bad_quantity = bad_quantity;
+            }
+            if (total_quantity !== undefined) {
+              item.total_quantity = total_quantity;
+            }
+            if (additional !== undefined) {
+              item.additional = additional;
+            }
             item.updatedAt = new Date();
           }
           break;
@@ -74,12 +114,18 @@ async function addReview(req, res) {
       classId: kelas._id,
       sarana: kelas.saranas.map((item) => ({
         itemName: item.name,
-        condition: item.condition.toString(),
+        good_quantity: item.good_quantity,
+        bad_quantity: item.bad_quantity,
+        total_quantity: item.total_quantity,
+        additional: item.additional,
         reviewedAt: new Date(),
       })),
       prasarana: kelas.prasaranas.map((item) => ({
         itemName: item.name,
-        condition: item.condition.toString(),
+        good_quantity: item.good_quantity,
+        bad_quantity: item.bad_quantity,
+        total_quantity: item.total_quantity,
+        additional: item.additional,
         reviewedAt: new Date(),
       })),
       mediaBelajar: kelas.mediaBelajars.map((item) => ({

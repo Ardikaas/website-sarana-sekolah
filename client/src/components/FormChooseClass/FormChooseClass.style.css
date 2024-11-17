@@ -1,32 +1,34 @@
-.formchooseclass-container{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.formchooseclass-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
 }
 
-.formchooseclass-card{
+.formchooseclass-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #F2B541;
+  background-color: #f2b541;
   padding: 50px;
   border-radius: 5px;
 }
 
-.formchooseclass-title h1{
+.formchooseclass-title h1 {
   margin: 0;
   color: #ffffff;
 }
 
-.pilih-kelas{
+.pilih-kelas {
   margin-top: 35px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 }
 
-.pilih-kelas a{
+.pilih-kelas a {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +43,26 @@
   transition: ease-in 0.3s;
 }
 
-.pilih-kelas a:hover{
+.pilih-kelas a:hover {
   background-color: #ffffff;
-  color: #F2B541;
+  color: #f2b541;
+}
+
+.formchooseclass-container > button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  background-color: #f2b541;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 30px;
+  border-radius: 30px;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: ease-in 0.3s;
+}
+
+.formchooseclass-container > button:hover {
+  color: #ffffff;
+  background-color: #202020;
 }

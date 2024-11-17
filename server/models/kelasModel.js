@@ -20,6 +20,10 @@ const saranaItem = mongoose.Schema(
       type: Number,
       required: [true],
     },
+    additional: {
+      type: String,
+      required: [false],
+    },
   },
   {
     timestamps: [true],
@@ -45,6 +49,10 @@ const prasaranaItem = mongoose.Schema(
     total_quantity: {
       type: Number,
       required: [true],
+    },
+    additional: {
+      type: String,
+      required: [false],
     },
   },
   {

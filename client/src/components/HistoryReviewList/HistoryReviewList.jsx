@@ -1,9 +1,11 @@
 import "./ReviewList.style.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HistoryReviewList = () => {
   const api_url = process.env.REACT_APP_API_URL;
   const [reviews, setReviews] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -67,6 +69,7 @@ const HistoryReviewList = () => {
           <a href={`/history-detail/${review._id}`}>Detail</a>
         </div>
       ))}
+      <button onClick={() => navigate(-1)}>Kembali</button>
     </div>
   );
 };

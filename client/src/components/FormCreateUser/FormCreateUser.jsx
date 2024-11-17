@@ -1,8 +1,10 @@
 import "./FormCreateUser.style.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FormCreateUser = () => {
   const api_url = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [mapel, setMapel] = useState("");
   const [role, setRole] = useState("");
@@ -100,7 +102,16 @@ const FormCreateUser = () => {
             />
           </div>
         </div>
-        <button onClick={handleSubmit}>Create User</button>
+        <div className="formcreateuser-button">
+          <button
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Kembali
+          </button>
+          <button onClick={handleSubmit}>Create User</button>
+        </div>
       </div>
       <div className={`account-card ${showAccountCard ? "" : "hide"}`}>
         <h1>Username :</h1>

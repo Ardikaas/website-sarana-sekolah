@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.formuseclass-container{
+.formuseclass-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,103 +8,204 @@
   margin-bottom: 70px;
 }
 
-.formuseclass-card{
+.formuseclass-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #F2B541;
+  background-color: #f2b541;
   border-radius: 5px;
   padding: 50px;
 }
 
-.formuseclass-card h1{
+.formuseclass-card h1 {
   margin: 0;
   color: #ffffff;
 }
 
-.kasipad{
+.kasipad {
   padding-bottom: 20px;
 }
 
-.formuseclass-devide{
+.formuseclass-devide {
   display: flex;
   flex-direction: row;
 }
 
-.formuseclass-left{
+.formuseclass-left {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
+  margin-right: 20px;
   background-color: #202020;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
 }
 
-.formuseclass-classname-tit{
-  font-size: 3rem;
+.formuseclass-classname-tit {
+  font-size: 2.5rem;
   margin: 0;
   font-weight: 800;
   color: #ffffff;
 }
 
-.formuseclass-right{
+.formuseclass-right {
   display: flex;
   flex-direction: column;
   border-left: 2px solid #202020;
   gap: 20px;
 }
 
-.formuseclass-category-tit{
-  margin: 0;
-  background-color: #202020;
-  color: #ffffff;
-  padding: 5px 10px;
-}
-
-.formuseclass-category-card{
+.formuseclass-right-sarana {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  align-items: flex-start;
+}
+
+.formuseclass-right-sarana-con {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.formuseclass-right-prasarana {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formuseclass-right-media {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formuseclass-right-sumber {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formuseclass-right-sarana > h1 {
+  background-color: #202020;
+  text-align: center;
+  padding: 0px 10px;
+}
+
+.formuseclass-right-prasarana > h1 {
+  background-color: #202020;
+  text-align: center;
+  padding: 0px 10px;
+}
+
+.formuseclass-right-media > h1 {
+  background-color: #202020;
+  text-align: center;
+  padding: 0px 10px;
+}
+
+.formuseclass-right-sumber > h1 {
+  background-color: #202020;
+  text-align: center;
+  padding: 0px 10px;
+}
+
+.formuseclass-right-card {
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 5px 15px 15px 15px;
+  border-radius: 5px;
   background-color: #ffffff;
-  color: #202020;
-  margin: 5px 15px;
-  padding: 5px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.category-card-item{
-  border-bottom: 2px solid #202020;
+.formuseclass-right-card > h2 {
   margin: 0;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  font-weight: 800;
+  padding-right: 5px;
+  border-bottom: 2px solid #202020;
 }
 
-.category-card-pil{
+.formuseclass-right-card-incon {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-top: 15px;
+}
+
+.formuseclass-right-card-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formuseclass-right-card-input > h4 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.formuseclass-right-card-input > input {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  border: 1.7px solid #202020;
+  border-radius: 3px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.formuseclass-right-card-old {
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 5px 15px 15px 15px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formuseclass-right-card-old > h2 {
+  margin: 0;
+  padding-right: 5px;
+  border-bottom: 2px solid #202020;
+  margin-bottom: 10px;
+}
+
+.formuseclass-right-card-inold {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.category-card-pil h4{
+.formuseclass-right-card-inold > h4 {
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
 }
 
-.category-card-pil input{
+.right-card-inold-tit {
+  padding-right: 20px;
+}
+
+.right-card-inold-rad > h4 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.right-card-inold-rad > input {
   accent-color: #202020;
+  margin-left: 15px;
 }
 
-.category-card-pil-tit{
-  width: 120px;
+.right-card-inold-rad {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.lebar{
-  width: 80px;
-}
-
-.formuseclass-button{
+.formuseclass-button {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -112,7 +213,7 @@
   gap: 30px;
 }
 
-.formuseclass-button button{
+.formuseclass-button button {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -123,24 +224,24 @@
   height: 40px;
 }
 
-.formuseclass-button-kembali{
+.formuseclass-button-kembali {
   background-color: #202020;
   color: #ffffff;
   transition: ease-in 0.3s;
 }
 
-.formuseclass-button-kembali:hover{
-  color: #F2B541;
+.formuseclass-button-kembali:hover {
+  color: #f2b541;
   background-color: #ffffff;
 }
 
-.formuseclass-button-submit{
+.formuseclass-button-submit {
   background-color: rgb(28, 64, 196);
   color: #ffffff;
   transition: ease-in 0.3s;
 }
 
-.formuseclass-button-submit:hover{
+.formuseclass-button-submit:hover {
   color: rgb(28, 64, 196);
   background-color: #ffffff;
 }

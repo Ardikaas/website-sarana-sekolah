@@ -12,13 +12,23 @@ const reviewSchema = mongoose.Schema(
           type: String,
           required: [true],
         },
-        condition: {
-          type: String,
+        good_quantity: {
+          type: Number,
+          required: [false],
+          default: null,
+        },
+        bad_quantity: {
+          type: Number,
+          required: [false],
+          default: null,
+        },
+        total_quantity: {
+          type: Number,
           required: [true],
         },
-        reviewedAt: {
-          type: Date,
-          default: Date.now,
+        additional: {
+          type: String,
+          required: [false],
         },
       },
     ],
@@ -28,13 +38,23 @@ const reviewSchema = mongoose.Schema(
           type: String,
           required: [true],
         },
-        condition: {
-          type: String,
+        good_quantity: {
+          type: Number,
+          required: [false],
+          default: null,
+        },
+        bad_quantity: {
+          type: Number,
+          required: [false],
+          default: null,
+        },
+        total_quantity: {
+          type: Number,
           required: [true],
         },
-        reviewedAt: {
-          type: Date,
-          default: Date.now,
+        additional: {
+          type: String,
+          required: [false],
         },
       },
     ],
