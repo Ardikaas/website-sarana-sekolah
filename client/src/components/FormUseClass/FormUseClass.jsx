@@ -24,7 +24,6 @@ const FormUseClass = () => {
         }
 
         const data = await response.json();
-        console.log(data);
         setClassData(data.data);
       } catch (error) {
         console.error("Error fetching class data:", error);

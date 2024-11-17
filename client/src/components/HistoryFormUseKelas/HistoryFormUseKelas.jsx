@@ -7,8 +7,6 @@ const HistoryFormUseKelas = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [historyData, setHistoryData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,8 +29,6 @@ const HistoryFormUseKelas = () => {
           body: JSON.stringify({ id }),
         });
 
-        console.log("Raw API Response:", response);
-
         if (!response.ok) {
           console.error(
             "API response error:",
@@ -42,24 +38,19 @@ const HistoryFormUseKelas = () => {
         }
 
         const result = await response.json();
-        console.log("Parsed API Response:", result);
 
         if (result.status.code === 200) {
-          console.log("Success Data:", result.data);
           const data = result.data.find((item) => item._id === id);
-          console.log("Filtered Data:", data);
           if (data) {
             setHistoryData(data);
           } else {
-            setError("No data found for the given ID.");
+            console.error("No data found for the given ID.");
           }
         } else {
-          setError(result.status.message);
+          console.error(result.status.message);
         }
       } catch (error) {
-        setError("An error occurred while fetching data.");
-      } finally {
-        setLoading(false);
+        console.error("An error occurred while fetching data.", error);
       }
     };
 
